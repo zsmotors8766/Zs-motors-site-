@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload | ZS Motors</title>
+  <style>
+    body {
+      background-color: #000814;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #00ffcc;
+      color: #000;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Upload Trouble Code</h2>
+  <form onsubmit="sendWhatsApp(); return false;">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="text" id="vehicle" placeholder="Vehicle Make/Model" required />
+    <select id="fuel">
+      <option>Diesel</option>
+      <option>Petrol</option>
+      <option>EV</option>
+    </select>
+    <select id="module">
+      <option>ABS</option>
+      <option>BCM</option>
+      <option>ECM</option>
+      <option>NOx Sensor</option>
+      <option>Transmission</option>
+    </select>
+    <textarea id="code" placeholder="Enter trouble code or issue" required></textarea>
+    <button type="submit">Send to WhatsApp</button>
+  </form>
+
+  <script>
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value;
+      const vehicle = document.getElementById("vehicle").value;
+      const fuel = document.getElementById("fuel").value;
+      const module = document.getElementById("module").value;
+      const code = document.getElementById("code").value;
+
+      const msg = `New Submission:
+Name: ${name}
+Vehicle: ${vehicle}
+Fuel: ${fuel}
+Module: ${module}
+Code/Issue: ${code}`;
+
+      const phone = "918766447938"; // ← Your WhatsApp number
+      const encoded = encodeURIComponent(msg);
+      const url = `https://wa.me/${phone}?text=${encoded}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
